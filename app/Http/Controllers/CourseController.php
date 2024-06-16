@@ -18,7 +18,9 @@ class CourseController extends Controller
     {
         //
         $courses = Course::orderBy('id', 'DESC')->get();
-        return view('admin.courses.index', ['courses' => $courses]);
+        return view('admin.courses.index', [
+            'courses' => $courses,
+        ]);
     }
 
     /**

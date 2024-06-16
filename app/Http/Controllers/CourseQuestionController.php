@@ -90,6 +90,13 @@ class CourseQuestionController extends Controller
     public function edit(CourseQuestion $courseQuestion)
     {
         //
+        $course = $courseQuestion->course;
+        $students = $course->students()->orderBy('id', 'DESC')->get();
+        return view('admin.questions.edit', [
+            'courseQuestion' => $courseQuestion,
+            'course' => $course,
+            'students' => $students,
+        ]);
     }
 
     /**
