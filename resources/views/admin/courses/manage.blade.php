@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('css/output.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/output.css') }}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="shortcut icon" href="{{ asset('images/logo/ujianCBT.svg')}}" type="image/x-icon">
 
@@ -170,7 +170,7 @@
                                 <div class="w-6 h-6 flex shrink-0">
                                     <img src="{{asset('images/icons/profile-2user-outline.svg')}}" alt="icon">
                                 </div>
-                                <p class="font-semibold">{{count($students)}}</p>
+                                <p class="font-semibold">{{count($students)}} Student</p>
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                         <img src="{{asset('images/icons/more.svg')}}" alt="icon">
                     </a>
                     <div class="dropdown-menu absolute right-0 top-[66px] w-[270px] flex flex-col gap-4 p-5 border border-[#EEEEEE] bg-white rounded-[18px] transition-all duration-300 shadow-[0_10px_16px_0_#0A090B0D]">
-                        <a href="" class="flex gap-[10px] items-center">
+                        <a href="{{ route('dashboard.course.course_students.create', $course) }}" class="flex gap-[10px] items-center">
                             <div class="w-5 h-5">
                                 <img src="{{asset('images/icons/profile-2user-outline.svg')}}" alt="icon">
                             </div>
@@ -233,8 +233,10 @@
                         </div>
                         <div class="flex items-center gap-[14px]">
                             <a href="{{ route('dashboard.course_questions.edit', $question) }}" class="bg-[#0A090B] p-[14px_30px] rounded-full text-white font-semibold">Edit</a>
-                            <form action="">
-                                <button class="w-[52px] h-[52px] flex shrink-0 items-center justify-center rounded-full bg-[#FD445E]">
+                            <form method="POST" action="{{ route('dashboard.course_questions.destroy', $question) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="w-[52px] h-[52px] flex shrink-0 items-center justify-center rounded-full bg-[#D11319]">
                                     <img src="{{asset('images/icons/trash.svg')}}" alt="icon">
                                 </button>
                             </form>

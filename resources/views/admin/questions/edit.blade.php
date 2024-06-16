@@ -186,8 +186,9 @@
                 </ul>
             @endif
 
-            <form method="POST" action="{{ route('dashboard.course.create.question.update', $courseQuestion) }}" id="add-question" class="mx-[70px] mt-[30px] flex flex-col gap-5">
+            <form method="POST" action="{{ route('dashboard.course_questions.update', $courseQuestion) }}" id="add-question" class="mx-[70px] mt-[30px] flex flex-col gap-5">
                 @csrf
+                @method('PUT')
                 <h2 class="font-bold text-2xl">Add New Question</h2>
                 <div class="flex flex-col gap-[10px]">
                     <p class="font-semibold">Question</p>
@@ -195,34 +196,36 @@
                         <div class="mr-[14px] w-6 h-6 flex items-center justify-center overflow-hidden">
                             <img src="{{asset('images/icons/note-text.svg')}}" class="h-full w-full object-contain" alt="icon">
                         </div>
-                        <input type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write the question" name="question">
+                        <input type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" value="{{ $courseQuestion->question }}"  placeholder="Write the question" name="question">
                     </div>
                 </div>
                 <div class="flex flex-col gap-[10px]">
                     <p class="font-semibold">Answers</p>
 
-                    @for ($i = 0; $i < 4; $i++)
+                    @forelse($courseQuestion->answers as $index =>$answer)
                         <div class="flex items-center gap-4">
                             <div class="flex items-center w-[500px] h-[52px] p-[14px_16px] rounded-full border border-[#EEEEEE] focus-within:border-2 focus-within:border-[#0A090B]">
                                 <div class="mr-[14px] w-6 h-6 flex items-center justify-center overflow-hidden">
                                     <img src="{{asset('images/icons/edit.svg')}}" class="h-full w-full object-contain" alt="icon">
                                 </div>
-                                <input type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write better answer option" name="answers[]">
+                                <input value="{{ $answer->answer }}" type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write better answer option" name="answers[]">
                             </div>
                             <label class="font-semibold flex items-center gap-[10px]"
                                 ><input
                                 type="radio"
-                                value="{{ $i }}"
+                                value="{{ $index }}"
+                                {{ $answer->is_correct ? 'checked' : '' }}
                                 name="correct_answer"
                                 class="w-[24px] h-[24px] appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-full checked:bg-[#2B82FE] ring ring-[#EEEEEE]"
                                 />
                                 Correct
                             </label>
                         </div>
-                    @endfor
+                        @empty
+                    @endforelse
 
                 </div>
-                <button type="submit" href="course-details.html" class="w-[500px] h-[52px] p-[14px_20px] bg-[#6436F1] rounded-full font-bold text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">Save Question</button>
+                <button type="submit" class="w-[500px] h-[52px] p-[14px_20px] bg-[#6436F1] rounded-full font-bold text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">Save Question</button>
             </form>
         </div>
     </section>
