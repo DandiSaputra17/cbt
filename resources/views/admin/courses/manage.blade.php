@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="{{ asset('css/output.css') }}" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="shortcut icon" href="{{ asset('images/logo/ujianCBT.svg')}}" type="image/x-icon">
 
@@ -91,13 +92,28 @@
                             <p class="font-semibold transition-all duration-300 hover:text-white">Settings</p>
                         </a>
                     </li>
+
+                    <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+
                     <li>
-                        <a href="signin.html" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#2B82FE]">
-                            <div>
-                                <img src="{{asset('images/icons/security-safe.svg')}}" alt="icon">
-                            </div>
-                            <p class="font-semibold transition-all duration-300 hover:text-white">Logout</p>
-                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="p-[10px_16px] flex items-center    gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#2B82FE]">
+                                <div>
+                                    <img src="{{asset('images/icons/security-safe.svg')}}" alt="icon">
+                                </div>
+                                <p class="font-semibold transition-all duration-300 hover:text-white">Logout</p>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -133,8 +149,8 @@
                     <div class="h-[46px] w-[1px] flex shrink-0 border border-[#EEEEEE]"></div>
                     <div class="flex gap-3 items-center">
                         <div class="flex flex-col text-right">
-                            <p class="text-sm text-[#7F8190]">Dandi Saputra</p>
-                            <p class="font-semibold">Dandi Saputra</p>
+                            <p class="text-sm text-[#7F8190]">Teacher</p>
+                            <p class="font-semibold">{{ Auth::user()->name }}</p>
                         </div>
                         <div class="w-[46px] h-[46px]">
                             <img src="{{asset('images/photos/default-photo.svg')}}" alt="photo">
