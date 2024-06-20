@@ -14,9 +14,15 @@ class CourseStudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Course $course)
     {
         //
+        $students = $course->students()->orderBy('id', 'DESC')->get();
+        return view('admin.students.add_student', [
+            'course' => $course,
+            'students' => $students,
+        ]);
+
     }
 
     /**

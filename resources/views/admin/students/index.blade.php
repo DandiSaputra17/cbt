@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="{{ asset('css/output.css') }}" rel="stylesheet">
-      <script src="https://cdn.tailwindcss.com"></script>
+  <link href="{{ asset('css/output.css') }}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="shortcut icon" href="{{ asset('images/logo/ujianCBT.svg')}}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('images/logo/ujianCBT.svg')}}')}}')}}" type="image/x-icon">
 </head>
 <body class="font-poppins text-[#0A090B]">
     <section id="content" class="flex">
@@ -50,7 +50,7 @@
                             </div>
                             <p class="font-semibold transition-all duration-300 hover:text-white">Messages</p>
                             <div class="notif w-5 h-5 flex shrink-0 rounded-full items-center justify-center bg-[#F6770B]">
-                                <p class="font-bold text-[10px] leading-[15px] text-white">0</p>
+                                <p class="font-bold text-[10px] leading-[15px] text-white">12</p>
                             </div>
                         </a>
                     </li>
@@ -127,10 +127,10 @@
                 <div class="flex items-center gap-[30px]">
                     <div class="flex gap-[14px]">
                         <a href="" class="w-[46px] h-[46px] flex shrink-0 items-center justify-center rounded-full border border-[#EEEEEE]">
-                            <img src="{{asset('images/icons/receipt-text.svg')}}" alt="icon" title="Receipt">
+                            <img src="{{asset('images/icons/receipt-text.svg')}}" alt="icon">
                         </a>
                         <a href="" class="w-[46px] h-[46px] flex shrink-0 items-center justify-center rounded-full border border-[#EEEEEE]">
-                            <img src="{{asset('images/icons/notification.svg')}}" alt="icon" title="Notification">
+                            <img src="{{asset('images/icons/notification.svg')}}" alt="icon">
                         </a>
                     </div>
                     <div class="h-[46px] w-[1px] flex shrink-0 border border-[#EEEEEE]"></div>
@@ -149,9 +149,9 @@
                 <div class="breadcrumb flex items-center gap-[30px]">
                     <a href="#" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold">Home</a>
                     <span class="text-[#7F8190] last:text-[#0A090B]">/</span>
-                    <a href="{{route('dashboard.courses.index')}}" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold">Manage Courses</a>
+                    <a href="{{route('dashboard.courses.show', $course)}}" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold">Manage Courses</a>
                     <span class="text-[#7F8190] last:text-[#0A090B]">/</span>
-                    <a href="#" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold">Course Details</a>
+                    <a href="#" class="text-[#7F8190] last:text-[#0A090B] last:font-semibold ">Course Students</a>
                 </div>
             </div>
             <div class="header ml-[70px] pr-[70px] w-[940px] flex items-center justify-between mt-10">
@@ -173,66 +173,83 @@
                                 <div class="w-6 h-6 flex shrink-0">
                                     <img src="{{asset('images/icons/profile-2user-outline.svg')}}" alt="icon">
                                 </div>
-                                <p class="font-semibold">{{count($students)}}</p>
+                                <p class="font-semibold">{{count($students)}} students</p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <a href="add-student.html" class="h-[52px] p-[14px_30px] bg-[#6436F1] rounded-full font-bold text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D]">Add Student</a>
+                </div>
+            </div>
+            <div id="course-test" class="mx-[70px] w-[870px] mt-[30px]">
+                <h2 class="font-bold text-2xl">Students</h2>
+                <div class="flex flex-col gap-5 mt-2">
+                    <div class="student-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
+                        <div class="flex gap-4 items-center">
+                            <div class="w-[50px] h-[50px] flex shrink-0 rounded-full overflow-hidden">
+                                <img src="{{asset('images/photos/default-photo.svg')}}" class="w-full h-full object-cover" alt="photo">
+                            </div>
+                            <div class="flex flex-col gap-[2px]">
+                                <p class="font-bold text-lg">Angga Parralax</p>
+                                <p class="text-[#7F8190]">angga@student.sg.com:</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-[14px]">
+                            <p class="p-[6px_10px] rounded-[10px] bg-[#06BC65] font-bold text-xs text-white outline-[#06BC65] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Passed</p>
+                        </div>
+                    </div>
+                    <div class="student-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
+                        <div class="flex gap-4 items-center">
+                            <div class="w-[50px] h-[50px] flex shrink-0 rounded-full overflow-hidden">
+                                <img src="{{asset('images/photos/default-photo.svg')}}" class="w-full h-full object-cover" alt="photo">
+                            </div>
+                            <div class="flex flex-col gap-[2px]">
+                                <p class="font-bold text-lg">Angga Parralax</p>
+                                <p class="text-[#7F8190]">angga@student.sg.com:</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-[14px]">
+                            <p class="p-[6px_10px] rounded-[10px] bg-[#FD445E] font-bold text-xs text-white outline-[#FD445E] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Not Passed</p>
+                        </div>
+                    </div>
+                    <div class="student-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
+                        <div class="flex gap-4 items-center">
+                            <div class="w-[50px] h-[50px] flex shrink-0 rounded-full overflow-hidden">
+                                <img src="{{asset('images/photos/default-photo.svg')}}" class="w-full h-full object-cover" alt="photo">
+                            </div>
+                            <div class="flex flex-col gap-[2px]">
+                                <p class="font-bold text-lg">Angga Parralax</p>
+                                <p class="text-[#7F8190]">angga@student.sg.com:</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-[14px]">
+                            <p class="p-[6px_10px] rounded-[10px] bg-[#06BC65] font-bold text-xs text-white outline-[#06BC65] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Passed</p>
                         </div>
                     </div>
                 </div>
             </div>
-
-            @if ($errors->any())
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li class="py-5 px-5 bg-red-700 text-white">
-                            {{ $error }}
-                        </li>
-                    @endforeach
-                </ul>
-            @endif
-
-            <form method="POST" action="{{ route('dashboard.course_questions.update', $courseQuestion) }}" id="add-question" class="mx-[70px] mt-[30px] flex flex-col gap-5">
-                @csrf
-                @method('PUT')
-                <h2 class="font-bold text-2xl">Add New Question</h2>
-                <div class="flex flex-col gap-[10px]">
-                    <p class="font-semibold">Question</p>
-                    <div class="flex items-center w-[500px] h-[52px] p-[14px_16px] rounded-full border border-[#EEEEEE] focus-within:border-2 focus-within:border-[#0A090B]">
-                        <div class="mr-[14px] w-6 h-6 flex items-center justify-center overflow-hidden">
-                            <img src="{{asset('images/icons/note-text.svg')}}" class="h-full w-full object-contain" alt="icon">
-                        </div>
-                        <input type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" value="{{ $courseQuestion->question }}"  placeholder="Write the question" name="question">
-                    </div>
-                </div>
-                <div class="flex flex-col gap-[10px]">
-                    <p class="font-semibold">Answers</p>
-
-                    @forelse($courseQuestion->answers as $index =>$answer)
-                        <div class="flex items-center gap-4">
-                            <div class="flex items-center w-[500px] h-[52px] p-[14px_16px] rounded-full border border-[#EEEEEE] focus-within:border-2 focus-within:border-[#0A090B]">
-                                <div class="mr-[14px] w-6 h-6 flex items-center justify-center overflow-hidden">
-                                    <img src="{{asset('images/icons/edit.svg')}}" class="h-full w-full object-contain" alt="icon">
-                                </div>
-                                <input value="{{ $answer->answer }}" type="text" class="font-semibold placeholder:text-[#7F8190] placeholder:font-normal w-full outline-none" placeholder="Write better answer option" name="answers[]">
-                            </div>
-                            <label class="font-semibold flex items-center gap-[10px]"
-                                ><input
-                                type="radio"
-                                value="{{ $index }}"
-                                {{ $answer->is_correct ? 'checked' : '' }}
-                                name="correct_answer"
-                                class="w-[24px] h-[24px] appearance-none checked:border-[3px] checked:border-solid checked:border-white rounded-full checked:bg-[#2B82FE] ring ring-[#EEEEEE]"
-                                />
-                                Correct
-                            </label>
-                        </div>
-                        @empty
-                    @endforelse
-
-                </div>
-                <button type="submit" class="w-[500px] h-[52px] p-[14px_20px] bg-[#6436F1] rounded-full font-bold text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">Save Question</button>
-            </form>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuButton = document.getElementById('more-button');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            menuButton.addEventListener('click', function () {
+            dropdownMenu.classList.toggle('hidden');
+            });
+
+            // Close the dropdown menu when clicking outside of it
+            document.addEventListener('click', function (event) {
+            const isClickInside = menuButton.contains(event.target) || dropdownMenu.contains(event.target);
+            if (!isClickInside) {
+                dropdownMenu.classList.add('hidden');
+            }
+            });
+        });
+    </script>
 
 </body>
 </html>
