@@ -6,6 +6,7 @@
   <link href="{{ asset('css/output.css') }}" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="{{ asset('images/logo/ujianCBT.svg') }}" type="image/x-icon">
 </head>
 <body class="font-poppins text-[#0A090B]">
     <section id="content" class="flex">
@@ -193,7 +194,11 @@
                         @endif
 
                     <div class="flex shrink-0 w-[120px] items-center">
-                        <a href="learning.html" class="w-full h-[41px] p-[10px_20px] bg-[#6436F1] rounded-full font-bold text-sm text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">Start Test</a>
+                        @if($course->nextQuestionId !== null)
+                        <a href="{{ route('dashboard.learning.course', ['course' => $course->id, 'question' => $course->nextQuestionId]) }}" class="w-full h-[41px] p-[10px_20px] bg-[#6436F1] rounded-full font-bold text-sm text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">Start Test</a>
+                        @else
+                        <a href="#" class="w-full h-[41px] p-[10px_20px] bg-indigo-900 rounded-full font-bold text-sm text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">Results</a>
+                        @endif
                     </div>
                 </div>
                 @empty
