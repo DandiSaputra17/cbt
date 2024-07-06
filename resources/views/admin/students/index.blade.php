@@ -179,54 +179,48 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <a href="add-student.html" class="h-[52px] p-[14px_30px] bg-[#6436F1] rounded-full font-bold text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D]">Add Student</a>
+                    <a href="{{ route('dashboard.course.course_students.create', $course) }}" class="h-[52px] p-[14px_30px] bg-[#6436F1] rounded-full font-bold text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D]">Add Student</a>
                 </div>
             </div>
             <div id="course-test" class="mx-[70px] w-[870px] mt-[30px]">
                 <h2 class="font-bold text-2xl">Students</h2>
                 <div class="flex flex-col gap-5 mt-2">
-                    <div class="student-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
-                        <div class="flex gap-4 items-center">
-                            <div class="w-[50px] h-[50px] flex shrink-0 rounded-full overflow-hidden">
-                                <img src="{{asset('images/photos/default-photo.svg')}}" class="w-full h-full object-cover" alt="photo">
+
+
+                    @forelse($students as $student)
+                        <div class="student-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
+                            <div class="flex gap-4 items-center">
+                                <div class="w-[50px] h-[50px] flex shrink-0 rounded-full overflow-hidden">
+                                    <img src="{{asset('images/photos/default-photo.svg')}}" class="w-full h-full object-cover" alt="photo">
+                                </div>
+                                <div class="flex flex-col gap-[2px]">
+                                    <p class="font-bold text-lg">{{ $student->name }}</p>
+                                    <p class="text-[#7F8190]">{{ $student->email }}</p>
+                                </div>
                             </div>
-                            <div class="flex flex-col gap-[2px]">
-                                <p class="font-bold text-lg">Angga Parralax</p>
-                                <p class="text-[#7F8190]">angga@student.sg.com:</p>
-                            </div>
+
+                            @if($student->status == 'Passed')
+                                <div class="flex items-center gap-[14px]">
+                                    <p class="p-[6px_10px] rounded-[10px] bg-[#06BC65] font-bold text-xs text-white outline-[#06BC65] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Passed</p>
+                                </div>
+                            @elseif($student->status == 'Not Started')
+                                <div class="flex items-center gap-[14px]">
+                                    <p class="p-[6px_10px] rounded-[10px] bg-indigo-900 font-bold text-xs text-white outline-indigo-900 outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Not Started</p>
+                                </div>
+                            @elseif($student->status == 'Not Passed')
+                                <div class="flex items-center gap-[14px]">
+                                    <p class="p-[6px_10px] rounded-[10px] bg-[#D11319] font-bold text-xs text-white outline-[#D11319] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Not Passed</p>
+                                </div>
+                            @endif
+
                         </div>
-                        <div class="flex items-center gap-[14px]">
-                            <p class="p-[6px_10px] rounded-[10px] bg-[#06BC65] font-bold text-xs text-white outline-[#06BC65] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Passed</p>
-                        </div>
-                    </div>
-                    <div class="student-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
-                        <div class="flex gap-4 items-center">
-                            <div class="w-[50px] h-[50px] flex shrink-0 rounded-full overflow-hidden">
-                                <img src="{{asset('images/photos/default-photo.svg')}}" class="w-full h-full object-cover" alt="photo">
-                            </div>
-                            <div class="flex flex-col gap-[2px]">
-                                <p class="font-bold text-lg">Angga Parralax</p>
-                                <p class="text-[#7F8190]">angga@student.sg.com:</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-[14px]">
-                            <p class="p-[6px_10px] rounded-[10px] bg-[#FD445E] font-bold text-xs text-white outline-[#FD445E] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Not Passed</p>
-                        </div>
-                    </div>
-                    <div class="student-card w-full flex items-center justify-between p-4 border border-[#EEEEEE] rounded-[20px]">
-                        <div class="flex gap-4 items-center">
-                            <div class="w-[50px] h-[50px] flex shrink-0 rounded-full overflow-hidden">
-                                <img src="{{asset('images/photos/default-photo.svg')}}" class="w-full h-full object-cover" alt="photo">
-                            </div>
-                            <div class="flex flex-col gap-[2px]">
-                                <p class="font-bold text-lg">Angga Parralax</p>
-                                <p class="text-[#7F8190]">angga@student.sg.com:</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-[14px]">
-                            <p class="p-[6px_10px] rounded-[10px] bg-[#06BC65] font-bold text-xs text-white outline-[#06BC65] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Passed</p>
-                        </div>
-                    </div>
+                    @empty
+                        <p class="text-center text-lg font-semibold">
+                            Belum memiliki siswa dikelas ini!.
+                        </p>
+                    @endforelse
+
+
                 </div>
             </div>
         </div>

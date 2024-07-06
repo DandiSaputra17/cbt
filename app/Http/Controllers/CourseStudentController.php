@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\CourseStudent;
+use App\Models\StudentAnswer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +19,31 @@ class CourseStudentController extends Controller
     {
         //
         $students = $course->students()->orderBy('id', 'DESC')->get();
-        return view('admin.students.add_student', [
+        $questions = $course->questions()->orderBy('id', 'DESC')->get();
+        $totalQuestions = $questions->count();
+
+        foreach($students as $student){
+            $studentAnswers = StudentAnswer::whereHas('question', function ($query) use ($course){
+                $query->where('course_id', $course->id);
+            })->where('user_id', $student->id)->get();
+
+            $answersCount = $studentAnswers->count();
+            $correctAnswersCount = $studentAnswers->where('answer', 'correct')->count();
+
+            if($answersCount == 0){
+                $student->status = 'Not Started';
+            } elseif ($correctAnswersCount < $totalQuestions){
+                $student->status = 'Not Passed';
+            } elseif ($correctAnswersCount == $totalQuestions){
+                $student->status = 'Passed';
+            }
+
+        }
+
+
+        return view('admin.students.index', [
             'course' => $course,
+            'questions' => $questions,
             'students' => $students,
         ]);
 
